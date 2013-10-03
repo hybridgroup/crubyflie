@@ -39,7 +39,7 @@ EOF
     spec.require_paths = ["lib"]
 
     spec.add_dependency "libusb"
-#    spec.add_dependency "rubysdl"
+    spec.add_dependency "rubysdl" if RUBY_PLATFORM != 'java'
     spec.add_dependency "trollop"
 
     spec.add_development_dependency "bundler", "~> 1.3"

@@ -18,9 +18,14 @@
 
 $: << File.join(File.dirname(__FILE__), 'crubyflie')
 
+
 require 'crubyflie_logger'
 require 'crazyflie'
-#require 'input/joystick_input_reader'
+begin
+  require 'input/joystick_input_reader'
+rescue LoadError
+  puts "NOTE: Jruby doesn't support the joystick"
+end
 require 'version'
 
 # The Crubyflie modules wraps all the Crubyflie code so we don't
