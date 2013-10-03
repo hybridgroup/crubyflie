@@ -21,16 +21,16 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'crubyflie/version'
 
 Gem::Specification.new do |spec|
-    spec.name          = "crubyflie"
+    spec.name          = "hybridgroup-crubyflie"
     spec.version       = Crubyflie::VERSION
-    spec.authors       = ["Hector Sanjuan"]
-    spec.email         = ["hector@convivencial.org"]
+    spec.authors       = ["Hector Sanjuan", "Adrian Zankich"]
+    spec.email         = ["hector@convivencial.org", "adrian@hybridgroup.com"]
     spec.description   = <<EOF
 Client library to control a Crazyflie. This library allows to talk to a
 crazyflie using the USB radio dongle.
 EOF
     spec.summary       = "A Ruby client for the Crazyflie quadcopter"
-    spec.homepage      = "https://github.com/hsanjuan/crubyflie"
+    spec.homepage      = "https://github.com/hybridgroup/crubyflie"
     spec.license       = "GPLv3"
 
     spec.files         = `git ls-files`.split($/)
