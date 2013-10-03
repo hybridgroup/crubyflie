@@ -24,7 +24,7 @@ require 'crazyflie'
 begin
   require 'input/joystick_input_reader'
 rescue LoadError
-  puts "NOTE: Jruby doesn't support the joystick"
+  puts "NOTE: Install rubysdl for joystick support"
 end
 require 'version'
 
