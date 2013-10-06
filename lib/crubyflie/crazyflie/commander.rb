@@ -36,7 +36,7 @@ module Crubyflie
         # @param thrust [Integer] thrust is an integer value ranging
         #                         from 10001 (next to no power) to
         #                         60000 (full power)
-        def send_setpoint(roll, pitch, yaw, thrust, xmode=false)
+        def send_setpoint(roll, pitch, yaw, thrust, xmode=false, hover=0)
             if xmode
                 roll = 0.707 * (roll - pitch)
                 pitch = 0.707 * (roll + pitch)
@@ -44,9 +44,9 @@ module Crubyflie
 
             packet = CRTPPacket.new()
             packet.modify_header(nil, Crazyflie::CRTP_PORTS[:commander], nil)
-            data = [roll, -pitch, yaw, thrust]
-            # send 3 floats and one unsigned short (16 bits) (all little endian)
-            data = data.pack('eeeS<')
+            data = [roll, -pitch, yaw, thrust, hover]
+            # send 3 floats, one unsigned short (16 bits), and a bool (all little endian)
+            data = data.pack('eeeS<C')
             packet.data = data.unpack('C*')
             @crazyflie.send_packet(packet, false)
         end
