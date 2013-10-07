@@ -48,7 +48,7 @@ module Crubyflie
                      :link
                     ]
 
-        attr_accessor :callbacks
+        attr_accessor :callbacks, :supports_hover
         attr_reader :cache_folder, :commander, :console, :param, :log
         attr_reader :crtp_queues, :link
         # Initialize a Crazyflie by registering default received-packet
@@ -83,6 +83,7 @@ module Crubyflie
             @log       = Log.new(self)
 
             @link = nil
+            @supports_hover = false
         end
 
 
