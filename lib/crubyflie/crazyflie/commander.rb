@@ -44,9 +44,15 @@ module Crubyflie
 
             packet = CRTPPacket.new()
             packet.modify_header(nil, Crazyflie::CRTP_PORTS[:commander], nil)
-            data = [roll, -pitch, yaw, thrust, hover]
-            # send 3 floats, one unsigned short (16 bits), and a bool (all little endian)
-            data = data.pack('eeeS<C')
+            if @crazyflie.supports_hover
+                data = [roll, -pitch, yaw, thrust, hover]
+                # send 3 floats, one unsigned short (16 bits), and a bool (all little endian)
+                data = data.pack('eeeS<C')
+            else
+                data = [roll, -pitch, yaw, thrust]
+                # send 3 floats, and one unsigned short (16 bits) (all little endian)
+                data = data.pack('eeeS<')
+            end
             packet.data = data.unpack('C*')
             @crazyflie.send_packet(packet, false)
         end
