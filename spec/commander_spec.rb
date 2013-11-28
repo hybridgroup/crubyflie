@@ -25,7 +25,6 @@ describe Commander do
         @queue = Queue.new
         allow(@crazyflie).to receive(:crtp_queues).and_return({:commander =>
                                                                   @queue})
-        allow(@crazyflie).to receive(:supports_hover).and_return(false)
 
         @commander = Commander.new(@crazyflie)
     end
